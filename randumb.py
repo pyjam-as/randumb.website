@@ -1,5 +1,4 @@
-from flask import Flask, redirect, json
-from werkzeug.exceptions import HTTPException
+from flask import Flask, redirect
 
 app = Flask(__name__)
 
@@ -14,7 +13,7 @@ def get_random_url() -> str:
     return "https://shodan.io/"
 
 
-@app.errorhandler(HTTPException)
+@app.errorhandler(Exception)
 def handle_exception(e):
     """ Prints poop in case of error """
     return "<h1>💩</h1>"
