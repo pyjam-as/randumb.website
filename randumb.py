@@ -1,16 +1,17 @@
+# deps
 from flask import Flask, redirect
+
+# app
+import shodan
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    url = get_random_url()
+    host = shodan.get_host()
+    url = f"http://{host}/"
     return redirect(url)
-
-
-def get_random_url() -> str:
-    return "https://shodan.io/"
 
 
 @app.errorhandler(Exception)
@@ -21,4 +22,3 @@ def handle_exception(e):
 
 if __name__ == '__main__':
     app.run()
-
