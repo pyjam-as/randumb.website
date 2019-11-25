@@ -10,5 +10,5 @@ run:
 docker-build:
 	docker build . -t $(IMGNAME)
 
-docker-run:
-	docker run $(IMGNAME)
+docker-run: docker-build
+	docker run -p 8080:80 $(IMGNAME)
