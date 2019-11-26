@@ -12,6 +12,7 @@ app = Flask(__name__)
 def index():
     host = shodan.get_host()
     url = f"http://{host}/"
+    logger.info(f"Served website: {url}")
     return redirect(url)
 
 
