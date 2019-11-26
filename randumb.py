@@ -1,5 +1,6 @@
 # deps
 from flask import Flask, redirect
+from loguru import logger
 
 # app
 import shodan
@@ -17,7 +18,7 @@ def index():
 @app.errorhandler(Exception)
 def handle_exception(e):
     """ Prints poop in case of error """
-    print(f"Error: {e}")
+    logger.error(f"Error: {e}")
     return "<h1>💩</h1>"
 
 

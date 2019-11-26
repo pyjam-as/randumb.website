@@ -12,14 +12,12 @@ HOST_QUEUE = []
 
 
 def get_host_queue() -> List[str]:
-    """ Get a new queue of HTTP hosts
-        by querying Shodan API """
+    """Get a new queue of HTTP hosts by querying Shodan API."""
     # choose some random chars to introduce result variance
-    entropy = ''.join([random.choice(string.ascii_letters) for _ in ENTROPY])
+    entropy = "".join([random.choice(string.ascii_letters) for _ in ENTROPY])
 
     # do the shodan API request
-    r = requests.get(SHODAN_URL, params={"query": f"HTTP {entropy}",
-                                         "key": SHODAN_KEY})
+    r = requests.get(SHODAN_URL, params={"query": f"HTTP {entropy}", "key": SHODAN_KEY})
 
     # filter for matches that contain "HTTP" and are on port 80
     result = [match["http"]["host"]
@@ -31,6 +29,7 @@ def get_host_queue() -> List[str]:
 
 
 def get_host():
+    global HOST_QUEUE
     if not HOST_QUEUE:
         HOST_QUEUE = get_host_queue()
     return HOST_QUEUE.pop()
