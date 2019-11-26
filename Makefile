@@ -6,6 +6,10 @@ run:
 	pipenv run \
 	python randumb.py
 
+check:
+	pipenv run \
+	mypy --ignore-missing-imports ./
+
 
 docker-build:
 	docker build . -t $(IMGNAME)

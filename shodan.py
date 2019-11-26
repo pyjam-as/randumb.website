@@ -8,7 +8,7 @@ import requests
 ENTROPY = 3
 SHODAN_URL = "https://api.shodan.io/shodan/host/search"
 SHODAN_KEY = os.getenv("SHODAN_KEY")
-HOST_QUEUE = []
+HOST_QUEUE: List[str] = []
 
 
 def get_host_queue() -> List[str]:
@@ -22,7 +22,7 @@ def get_host_queue() -> List[str]:
     # filter for matches that contain "HTTP" and are on port 80
     result = [match["http"]["host"]
               for match in r.json()["matches"]
-              if match["port"] == 80 and match["data"].statswith("HTTP")]
+              if match["port"] == 80 and match["data"].startswith("HTTP")]
 
     # if no matches, recurse until match
     return result if result else get_host_queue()
