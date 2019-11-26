@@ -7,7 +7,7 @@ import requests
 
 ENTROPY = 3
 SHODAN_URL = "https://api.shodan.io/shodan/host/search"
-SHODAN_KEY = os.getenv("SHODAN_KEY")
+SHODAN_KEY = os.getenv("SHODAN_KEY", "💩")
 HOST_QUEUE: List[str] = []
 
 
