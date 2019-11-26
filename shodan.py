@@ -14,7 +14,7 @@ HOST_QUEUE = []
 def get_host_queue() -> List[str]:
     """Get a new queue of HTTP hosts by querying Shodan API."""
     # choose some random chars to introduce result variance
-    entropy = "".join([random.choice(string.ascii_letters) for _ in ENTROPY])
+    entropy = "".join([random.choice(string.ascii_letters) for _ in range(ENTROPY)])
 
     # do the shodan API request
     r = requests.get(SHODAN_URL, params={"query": f"HTTP {entropy}", "key": SHODAN_KEY})
